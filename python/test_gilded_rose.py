@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+"""
+    Tests for guilded_rose functionality
+"""
 import unittest
 
 from gilded_rose import Item, GildedRose
