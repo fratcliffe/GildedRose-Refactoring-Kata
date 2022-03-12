@@ -1,9 +1,9 @@
 """
     Output of guilded_rose using test data
 """
-from __future__ import print_function
-
 from gilded_rose import *
+from tabulate import tabulate
+
 
 if __name__ == "__main__":
     print("OMGHAI!")
@@ -20,13 +20,15 @@ if __name__ == "__main__":
             ]
 
     days = 5
-    import sys
-    if len(sys.argv) > 1:
-        days = int(sys.argv[1]) + 1
     for day in range(days):
-        print("-------- day %s --------" % day)
-        print("name, sellIn, quality")
+        table = []
         for item in items:
-            print(item)
-        print("")
+            table.append([item.name, item.sell_in, item.quality])
+        print(f"\nDay {day}")
+        print(tabulate(
+            table,
+            headers=["Name", "Sell In", "Quality"],
+            tablefmt="pretty",
+            colalign=("left", "center", "center")
+        ))
         GildedRose(items).update_quality()
