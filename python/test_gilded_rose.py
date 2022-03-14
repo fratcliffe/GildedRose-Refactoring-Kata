@@ -25,13 +25,33 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(0, items[0].quality)
 
-    def test_conj(self):
+    def test_backstage(self):
+        items = [Item("Backstage passes", 0, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(0, items[0].quality)
+
+    def test_brie(self):
+        items = [Item("Aged Brie", -1, 2)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(-2, items[0].sell_in)
+        self.assertEqual(3, items[0].quality)
+
+    def test_conjured(self):
         items = [Item("Conjured", 2, 4)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual("Conjured", items[0].name)
         self.assertEqual(1, items[0].sell_in)
         self.assertEqual(2, items[0].quality)
+
+    def test_sulfuras(self):
+        items = [Item("Sulfuras", 0, 80)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(0, items[0].sell_in)
+        self.assertEqual(80, items[0].quality)
 
 
 if __name__ == '__main__':

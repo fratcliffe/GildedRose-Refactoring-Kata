@@ -42,8 +42,6 @@ class GildedRose(object):
                             item.quality -= 1
                 elif "Backstage passes" in item.name:
                     item.quality -= item.quality
-                elif item.quality < 50:
-                    item.quality += 1
 
 
 class Item:
